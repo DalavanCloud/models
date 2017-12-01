@@ -112,7 +112,7 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   elif dataset == 'mnist':
     test_data, test_labels = input.ld_mnist(test_only=True)
   elif dataset == 'digit':
-    test_data, test_labels = input.ld_digit(test_only=True)
+    test_data, test_labels = input.ld_digit(test_only=True, num=2000)
   else:
     print("Check value of dataset flag")
     return False
