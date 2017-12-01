@@ -400,7 +400,7 @@ def ld_digit(test_only=False, num = 1000):
   """
   # Define files to be downloaded
   # WARNING: changing the order of this list will break indices (cf. below)
-  file_path = 'digit_data/'
+  file_path = FLAGS.data_dir +'/digit_data/'
   local_urls = [
               file_path + 'digit.train-MNIST.data.gz',
               file_path + 'digit.train-MNIST.labels.gz',
