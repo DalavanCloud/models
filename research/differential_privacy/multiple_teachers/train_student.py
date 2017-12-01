@@ -30,7 +30,7 @@ FLAGS = tf.flags.FLAGS
 
 tf.flags.DEFINE_string('dataset', 'svhn', 'The name of the dataset to use')
 tf.flags.DEFINE_string('dataset_teacher', 'svhn', 'The private data used to train the teacher')
-tf.flags.DEFINE_integer('d_stu', -1, 'The rgb dimension/slice on which training is on')
+tf.flags.DEFINE_integer('d_stu', -1, 'The rgb dimension/slice on which training is on.(RGB->012, grey scale->3)')
 
 tf.flags.DEFINE_integer('nb_labels', 10, 'Number of output classes')
 

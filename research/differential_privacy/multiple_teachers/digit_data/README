@@ -1,0 +1,46 @@
+README
+------
+
+This zip contains DIGITS dataset and USPS dataset in
+MNIST-compatible format as used in the following paper. If you use
+these datasets please cite it.
+
+Alexander K. Seewald, "On the Brittleness of Handwritten Digit
+Recognition Models," ISRN Machine Vision, vol. 2012, Article ID
+834127, 10 pages, 2012. doi:10.5402/2012/834127.
+
+All data sets contain one .data file and one .label file in MNIST
+format (similar to *-labels-idx1-ubyte and *-images-idx3-ubyte from
+MNIST). For simplicity we only refer to the filename without
+extension.
+
+all-digits-MNIST-gammaC
+  All DIGITS digit (train+test), gamma-corrected to fit MNIST data
+all-digits-MNIST-gammaC-sh
+  gamma-corrected and shifted to center-of-gravity
+all-digits-MNIST-gammaC-sh-asp
+  gamma-corrected, shifted to c-o-g, and aspect ratio changed to fit MNIST
+
+zip.train-MNIST
+  USPS train split, gamma-corrected and shifted to center-of-gravity
+zip.test-MNIST
+  USPS test split,  gamma-corrected and shifted to center-of-gravity
+zip.test-MNIST-l2t
+  USPS test split, gamma-corrected, shifted to c-o-g and thinned to
+  binary image... worse performance so no training data was generated.
+
+For any questions please contact me, the main author of above paper.
+
+Best,
+  Alex
+--
+Dr. Alexander K. Seewald
+
+Seewald Solutions
+www.seewald.at
+Tel. +43 7243 21520
+Mob. +43 664 1106886
+Fax. +43 1 2533033 2764
+
+
+

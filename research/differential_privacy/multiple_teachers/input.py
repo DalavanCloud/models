@@ -124,7 +124,7 @@ def extract_svhn(local_url):
   :return:
   """
 
-  with tf.gfile.Open(local_url, mode='r') as file_obj:
+  with open(local_url, mode='r') as file_obj:
     # Load MATLAB matrix using scipy IO
     dict = loadmat(file_obj)
 
@@ -182,15 +182,15 @@ def extract_cifar10(local_url, data_dir):
 
   if all_preprocessed:
     # Reload pre-processed training data from numpy dumps
-    with tf.gfile.Open(data_dir + preprocessed_files[0], mode='r') as file_obj:
+    with open(data_dir + preprocessed_files[0], mode='r') as file_obj:
       train_data = np.load(file_obj)
-    with tf.gfile.Open(data_dir + preprocessed_files[1], mode='r') as file_obj:
+    with open(data_dir + preprocessed_files[1], mode='r') as file_obj:
       train_labels = np.load(file_obj)
 
     # Reload pre-processed testing data from numpy dumps
-    with tf.gfile.Open(data_dir + preprocessed_files[2], mode='r') as file_obj:
+    with open(data_dir + preprocessed_files[2], mode='r') as file_obj:
       test_data = np.load(file_obj)
-    with tf.gfile.Open(data_dir + preprocessed_files[3], mode='r') as file_obj:
+    with open(data_dir + preprocessed_files[3], mode='r') as file_obj:
       test_labels = np.load(file_obj)
 
   else:
@@ -269,7 +269,7 @@ def extract_mnist_data(filename, num_images, image_size, pixel_depth):
       np.save(filename, data)
       return data
   else:
-    with tf.gfile.Open(filename+".npy", mode='r') as file_obj:
+    with open(filename+".npy", mode='r') as file_obj:
       return np.load(file_obj)
 
 
@@ -286,7 +286,7 @@ def extract_mnist_labels(filename, num_images):
       np.save(filename, labels)
     return labels
   else:
-    with tf.gfile.Open(filename+".npy", mode='r') as file_obj:
+    with open(filename+".npy", mode='r') as file_obj:
       return np.load(file_obj)
 
 
