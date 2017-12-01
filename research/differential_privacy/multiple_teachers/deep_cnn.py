@@ -23,7 +23,7 @@ import numpy as np
 import tensorflow as tf
 import time
 
-from differential_privacy.multiple_teachers import utils
+import utils
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -92,6 +92,9 @@ def inference(images, dropout=False):
     first_conv_shape = [5, 5, 1, 64]
   else:
     first_conv_shape = [5, 5, 3, 64]
+
+  if FLAGS.d_stu > -1:
+    first_conv_shape = [5, 5, 1, 64]
 
   # conv1
   with tf.variable_scope('conv1') as scope:
@@ -199,7 +202,7 @@ def inference_deeper(images, dropout=False):
     Logits
   """
   if FLAGS.dataset == 'mnist':
-    first_conv_shape = [3, 3, 1, 96]
+    first_conv_shape = [3, 3, 3, 96]
   else:
     first_conv_shape = [3, 3, 3, 96]
 
@@ -437,6 +440,10 @@ def _input_placeholder():
   else:
     image_size = 32
     num_channels = 3
+
+  if FLAGS.d_stu > -1: 
+    image_size = 28
+    num_channels = 1
 
   # Declare data placeholder
   train_node_shape = (FLAGS.batch_size, image_size, image_size, num_channels)

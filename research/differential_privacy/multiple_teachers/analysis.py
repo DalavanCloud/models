@@ -43,7 +43,7 @@ import math
 import numpy as np
 import tensorflow as tf
 
-from differential_privacy.multiple_teachers.input import maybe_download
+from input import maybe_download
 
 # These parameters can be changed to compute bounds for different failure rates
 # or different model predictions.

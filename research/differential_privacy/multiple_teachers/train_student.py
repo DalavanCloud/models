@@ -21,14 +21,17 @@ from __future__ import print_function
 import numpy as np
 import tensorflow as tf
 
-from differential_privacy.multiple_teachers import aggregation
-from differential_privacy.multiple_teachers import deep_cnn
-from differential_privacy.multiple_teachers import input
-from differential_privacy.multiple_teachers import metrics
+import aggregation
+import deep_cnn
+import input
+import metrics
 
 FLAGS = tf.flags.FLAGS
 
 tf.flags.DEFINE_string('dataset', 'svhn', 'The name of the dataset to use')
+tf.flags.DEFINE_string('dataset_teacher', 'svhn', 'The private data used to train the teacher')
+tf.flags.DEFINE_integer('d_stu', -1, 'The rgb dimension/slice on which training is on')
+
 tf.flags.DEFINE_integer('nb_labels', 10, 'Number of output classes')
 
 tf.flags.DEFINE_string('data_dir','/tmp','Temporary storage')
@@ -73,9 +76,9 @@ def ensemble_preds(dataset, nb_teachers, stdnt_data):
   for teacher_id in xrange(nb_teachers):
     # Compute path of checkpoint file for teacher model with ID teacher_id
     if FLAGS.deeper:
-      ckpt_path = FLAGS.teachers_dir + '/' + str(dataset) + '_' + str(nb_teachers) + '_teachers_' + str(teacher_id) + '_deep.ckpt-' + str(FLAGS.teachers_max_steps - 1) #NOLINT(long-line)
+      ckpt_path = FLAGS.teachers_dir + '/' + str(FLAGS.dataset_teacher) + '_' + str(nb_teachers) + '_teachers_' + str(teacher_id) + '_deep.ckpt-' + str(FLAGS.teachers_max_steps - 1) #NOLINT(long-line)
     else:
-      ckpt_path = FLAGS.teachers_dir + '/' + str(dataset) + '_' + str(nb_teachers) + '_teachers_' + str(teacher_id) + '.ckpt-' + str(FLAGS.teachers_max_steps - 1)  # NOLINT(long-line)
+      ckpt_path = FLAGS.teachers_dir + '/' + str(FLAGS.dataset_teacher) + '_' + str(nb_teachers) + '_teachers_' + str(teacher_id) + '.ckpt-' + str(FLAGS.teachers_max_steps - 1)  # NOLINT(long-line)
 
     # Get predictions on our training data and store in result array
     result[teacher_id] = deep_cnn.softmax_preds(stdnt_data, ckpt_path)
@@ -116,8 +119,11 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   assert FLAGS.stdnt_share < len(test_data)
 
   # Prepare [unlabeled] student training data (subset of test set)
-  stdnt_data = test_data[:FLAGS.stdnt_share]
+  if (FLAGS.d_stu > -1):
 
+    stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
+  else:
+    stdnt_data = test_data[:FLAGS.stdnt_share]
   # Compute teacher predictions for student training data
   teachers_preds = ensemble_preds(dataset, nb_teachers, stdnt_data)
 
@@ -147,7 +153,16 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   print("Accuracy of the aggregated labels: " + str(ac_ag_labels))
 
   # Store unused part of test set for use as a test set after student training
+  if FLAGS.dataset_teacher == 'mnist':
+    test_data, test_labels = input.ld_mnist(test_only=True)
+  else:
+    assert 0==1, "Non implemented error: dataset_teacher not equals to mnist"
+
+#  if FLAGS.d_stu > -1:
+#    stdnt_test_data = test_data[FLAGS.stdnt_share:, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
+#  else:
   stdnt_test_data = test_data[FLAGS.stdnt_share:]
+  
   stdnt_test_labels = test_labels[FLAGS.stdnt_share:]
 
   if save:

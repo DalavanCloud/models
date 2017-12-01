@@ -1,0 +1,91 @@
+2017-10-27 21:44:33.180999: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-27 21:44:33.181044: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-27 21:44:33.181049: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-27 21:44:33.181053: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-10-27 21:44:33.181057: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+(26032, 32, 32, 3)
+Computed Teacher 0 softmax predictions
+Computed Teacher 1 softmax predictions
+Computed Teacher 2 softmax predictions
+Computed Teacher 3 softmax predictions
+Computed Teacher 4 softmax predictions
+Computed Teacher 5 softmax predictions
+Computed Teacher 6 softmax predictions
+Computed Teacher 7 softmax predictions
+Computed Teacher 8 softmax predictions
+Computed Teacher 9 softmax predictions
+Computed Teacher 10 softmax predictions
+Computed Teacher 11 softmax predictions
+Computed Teacher 12 softmax predictions
+Computed Teacher 13 softmax predictions
+Computed Teacher 14 softmax predictions
+Computed Teacher 15 softmax predictions
+Computed Teacher 16 softmax predictions
+Computed Teacher 17 softmax predictions
+Computed Teacher 18 softmax predictions
+Computed Teacher 19 softmax predictions
+Computed Teacher 20 softmax predictions
+Computed Teacher 21 softmax predictions
+Computed Teacher 22 softmax predictions
+Computed Teacher 23 softmax predictions
+Computed Teacher 24 softmax predictions
+Computed Teacher 25 softmax predictions
+Computed Teacher 26 softmax predictions
+Computed Teacher 27 softmax predictions
+Computed Teacher 28 softmax predictions
+Computed Teacher 29 softmax predictions
+Computed Teacher 30 softmax predictions
+Computed Teacher 31 softmax predictions
+Computed Teacher 32 softmax predictions
+Computed Teacher 33 softmax predictions
+Computed Teacher 34 softmax predictions
+Computed Teacher 35 softmax predictions
+Computed Teacher 36 softmax predictions
+Computed Teacher 37 softmax predictions
+Computed Teacher 38 softmax predictions
+Computed Teacher 39 softmax predictions
+Computed Teacher 40 softmax predictions
+Computed Teacher 41 softmax predictions
+Computed Teacher 42 softmax predictions
+Computed Teacher 43 softmax predictions
+Computed Teacher 44 softmax predictions
+Computed Teacher 45 softmax predictions
+Computed Teacher 46 softmax predictions
+Computed Teacher 47 softmax predictions
+Computed Teacher 48 softmax predictions
+Computed Teacher 49 softmax predictions
+Accuracy of the aggregated labels: 0.17
+Done Initializing Training Placeholders
+Graph constructed and saver created
+Session ready, beginning training loop
+2017-10-27 21:45:33.391630: step 0, loss = 8.44 (328.2 examples/sec; 0.390 sec/batch)
+2017-10-27 21:46:07.981834: step 100, loss = 7.47 (389.4 examples/sec; 0.329 sec/batch)
+2017-10-27 21:46:41.884600: step 200, loss = 6.96 (371.3 examples/sec; 0.345 sec/batch)
+2017-10-27 21:47:15.551252: step 300, loss = 6.72 (390.3 examples/sec; 0.328 sec/batch)
+2017-10-27 21:47:49.619507: step 400, loss = 6.39 (367.3 examples/sec; 0.349 sec/batch)
+2017-10-27 21:48:23.585727: step 500, loss = 6.07 (388.3 examples/sec; 0.330 sec/batch)
+2017-10-27 21:48:57.332999: step 600, loss = 5.69 (375.8 examples/sec; 0.341 sec/batch)
+2017-10-27 21:49:31.146992: step 700, loss = 5.46 (354.1 examples/sec; 0.362 sec/batch)
+2017-10-27 21:50:05.365998: step 800, loss = 4.96 (392.6 examples/sec; 0.326 sec/batch)
+2017-10-27 21:50:39.566219: step 900, loss = 4.49 (382.4 examples/sec; 0.335 sec/batch)
+2017-10-27 21:51:13.296710: step 1000, loss = 4.29 (377.1 examples/sec; 0.339 sec/batch)
+2017-10-27 21:51:48.246465: step 1100, loss = 4.04 (380.2 examples/sec; 0.337 sec/batch)
+2017-10-27 21:52:22.514422: step 1200, loss = 3.87 (367.0 examples/sec; 0.349 sec/batch)
+2017-10-27 21:52:56.247714: step 1300, loss = 3.72 (373.1 examples/sec; 0.343 sec/batch)
+2017-10-27 21:53:29.995264: step 1400, loss = 3.57 (385.8 examples/sec; 0.332 sec/batch)
+2017-10-27 21:54:03.900165: step 1500, loss = 3.43 (371.2 examples/sec; 0.345 sec/batch)
+2017-10-27 21:54:37.796480: step 1600, loss = 3.30 (392.5 examples/sec; 0.326 sec/batch)
+2017-10-27 21:55:11.955082: step 1700, loss = 3.17 (387.0 examples/sec; 0.331 sec/batch)
+2017-10-27 21:55:45.656978: step 1800, loss = 3.04 (354.9 examples/sec; 0.361 sec/batch)
+2017-10-27 21:56:19.325967: step 1900, loss = 2.92 (378.5 examples/sec; 0.338 sec/batch)
+2017-10-27 21:56:52.975747: step 2000, loss = 2.81 (369.1 examples/sec; 0.347 sec/batch)
+2017-10-27 21:57:28.450093: step 2100, loss = 2.70 (388.6 examples/sec; 0.329 sec/batch)
+2017-10-27 21:58:02.400999: step 2200, loss = 2.60 (386.6 examples/sec; 0.331 sec/batch)
+2017-10-27 21:58:36.399507: step 2300, loss = 2.49 (385.5 examples/sec; 0.332 sec/batch)
+2017-10-27 21:59:10.147690: step 2400, loss = 2.40 (382.8 examples/sec; 0.334 sec/batch)
+2017-10-27 21:59:44.079157: step 2500, loss = 2.30 (360.1 examples/sec; 0.355 sec/batch)
+2017-10-27 22:00:18.053387: step 2600, loss = 2.21 (382.1 examples/sec; 0.335 sec/batch)
+2017-10-27 22:00:51.840083: step 2700, loss = 2.13 (372.8 examples/sec; 0.343 sec/batch)
+2017-10-27 22:01:26.328505: step 2800, loss = 2.05 (389.8 examples/sec; 0.328 sec/batch)
+2017-10-27 22:02:00.014201: step 2900, loss = 1.97 (376.7 examples/sec; 0.340 sec/batch)
+Precision of student after training: 0.257444444444
