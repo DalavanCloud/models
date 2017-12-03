@@ -131,19 +131,21 @@ def prepare_student_data(dataset, nb_teachers, save=False):
 
   # Prepare [unlabeled] student training data (subset of test set)
   if (FLAGS.d_stu > -1):
-    stdnt_data = []
-    for i in range(FLAGS.stdnt_share):
-      new_img = transform.resize(skimage.img_as_ubyte(test_data[i].astype(int)),(28,28))
-
-      if FLAGS.d_stu == 3:
-        new_img = color.rgb2gray(new_img) 
-      else:
-        new_img = new_img[ :,:, FLAGS.d_stu]
-
-      stdnt_data.append(new_img.reshape(28,28,1).astype(np.float32))
-      
-    stdnt_data = np.array(stdnt_data)
-    #stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
+#    stdnt_data = []
+#    for i in range(FLAGS.stdnt_share):
+#      new_img = transform.resize(skimage.img_as_ubyte(test_data[i].astype(int)),(28,28))
+#      if FLAGS.d_stu == 3:
+#        new_img = color.rgb2gray(new_img) 
+#      else:
+#        new_img = new_img[ :,:, FLAGS.d_stu]
+#      stdnt_data.append(new_img.reshape(28,28,1).astype(np.float32))
+#    stdnt_data = np.array(stdnt_data)
+    trimmed = test_data[:FLAGS.stdnt_share, 2:30, 2:30, :]
+    # grey scale
+    if (FLAGS.d_stu ==3):
+      stdnt_data = 0.2125*trimmed[:,:,0] +  0.7154*trimmed[:,:,1] + 0.0721*trimmed[:,:,2]
+    else:
+      stdnt_data = trimmed[FLAGS.d_stu]
   else:
     stdnt_data = test_data[:FLAGS.stdnt_share]
   # Compute teacher predictions for student training data
