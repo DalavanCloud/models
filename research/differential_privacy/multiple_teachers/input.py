@@ -392,7 +392,7 @@ def ld_mnist(test_only=False):
   else:
     return train_data, train_labels, test_data, test_labels
 
-def ld_digit(test_only=False, num=2000):
+def ld_digit_test(test_name, num):
   """
   Load the digit dataset from local files. currently only first 1000
   :param test_only: disables loading of both train and extra -> large speed up
@@ -402,22 +402,17 @@ def ld_digit(test_only=False, num=2000):
   # WARNING: changing the order of this list will break indices (cf. below)
   file_path = FLAGS.data_dir + '/'
   local_urls = [
-              file_path + 'digit.train-MNIST.data.gz',
-              file_path + 'digit.train-MNIST.labels.gz',
-              file_path + 'digit.test-MNIST.data.gz',
-              file_path + 'digit.test-MNIST.labels.gz',
+              file_path + test_name + '.data.gz',
+              file_path + test_name + '.labels.gz',
               ]
 
   # Extract it into np arrays.
-  train_data = extract_mnist_data(local_urls[0], num, 28, 1)
-  train_labels = extract_mnist_labels(local_urls[1], num)
+
   test_data = extract_mnist_data(local_urls[2], num, 28, 1)
   test_labels = extract_mnist_labels(local_urls[3], num)
 
-  if test_only:
-    return test_data, test_labels
-  else:
-    return train_data, train_labels, test_data, test_labels
+
+  return train_data, train_labels, test_data, test_labels
 
 
 def partition_dataset(data, labels, nb_teachers, teacher_id):

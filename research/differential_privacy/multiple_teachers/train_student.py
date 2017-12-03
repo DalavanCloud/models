@@ -31,6 +31,7 @@ FLAGS = tf.flags.FLAGS
 tf.flags.DEFINE_string('dataset', 'svhn', 'The name of the dataset to use')
 tf.flags.DEFINE_string('dataset_teacher', 'svhn', 'The private data used to train the teacher')
 tf.flags.DEFINE_integer('d_stu', -1, 'The rgb dimension/slice on which training is on.(RGB->012, grey scale->3)')
+tf.flags.DEFINE_string('test_name','digit.test-MNIST-l2t','loading different version of datasets as student training data')
 
 tf.flags.DEFINE_integer('nb_labels', 10, 'Number of output classes')
 
@@ -83,6 +84,9 @@ def ensemble_preds(dataset, nb_teachers, stdnt_data):
     # Get predictions on our training data and store in result array
     result[teacher_id] = deep_cnn.softmax_preds(stdnt_data, ckpt_path)
 
+    # Save student training data
+    np.save('STU.' + FLAGS.test_name + '.npy', stdnt_data)
+
     # This can take a while when there are a lot of teachers so output status
     print("Computed Teacher " + str(teacher_id) + " softmax predictions")
 
@@ -112,7 +116,7 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   elif dataset == 'mnist':
     test_data, test_labels = input.ld_mnist(test_only=True)
   elif dataset == 'digit':
-    test_data, test_labels = input.ld_digit(test_only=True, num=2000)
+    test_data, test_labels = input.ld_digit_test(test_name=FLAGS.test_name, num=2000)
   else:
     print("Check value of dataset flag")
     return False
