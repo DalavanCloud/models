@@ -26,6 +26,8 @@ import deep_cnn
 import input
 import metrics
 from skimage import transform
+from skimage import color
+
 
 FLAGS = tf.flags.FLAGS
 
@@ -133,7 +135,7 @@ def prepare_student_data(dataset, nb_teachers, save=False):
       new_img = transform.resize(test_data[i],(28,28))
 
       if FLAGS.d_stu == 3:
-        new_img = skimage.color.rgb2gray(new_img) 
+        new_img = color.rgb2gray(new_img) 
       else:
         new_img = new_img[ :,:, FLAGS.stu]
 
