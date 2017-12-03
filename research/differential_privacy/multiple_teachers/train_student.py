@@ -25,6 +25,7 @@ import aggregation
 import deep_cnn
 import input
 import metrics
+from skimage import transform
 
 FLAGS = tf.flags.FLAGS
 
@@ -127,8 +128,18 @@ def prepare_student_data(dataset, nb_teachers, save=False):
 
   # Prepare [unlabeled] student training data (subset of test set)
   if (FLAGS.d_stu > -1):
+    stdnt_data = []
+    for i in range(FLAGS.stdnt_share):
+      new_img = transform.resize(test_data[i],(28,28))
 
-    stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
+      if FLAGS.d_stu == 3:
+        new_img = skimage.color.rgb2gray(new_img) 
+      else:
+        new_img = new_img[ :,:, FLAGS.stu]
+
+      stdnt_data.append(new_img.reshape(28,28,1))
+
+    #stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
   else:
     stdnt_data = test_data[:FLAGS.stdnt_share]
   # Compute teacher predictions for student training data
