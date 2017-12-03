@@ -392,7 +392,7 @@ def ld_mnist(test_only=False):
   else:
     return train_data, train_labels, test_data, test_labels
 
-def ld_digit(test_only=False, num=2000):
+def ld_digit(test_only=False):
   """
   Load the digit dataset from local files. currently only first 1000
   :param test_only: disables loading of both train and extra -> large speed up
@@ -400,19 +400,19 @@ def ld_digit(test_only=False, num=2000):
   """
   # Define files to be downloaded
   # WARNING: changing the order of this list will break indices (cf. below)
-  file_path = FLAGS.data_dir +'/digit_data/'
+  file_path = FLAGS.data_dir + '/'
   local_urls = [
-              file_path + 'digit.train-MNIST.data.gz',
-              file_path + 'digit.train-MNIST.labels.gz',
-              file_path + 'digit.test-MNIST.data.gz',
-              file_path + 'digit.test-MNIST.labels.gz',
+              file_path + 'train-images-idx3-ubyte.gz',
+              file_path + 'train-labels-idx1-ubyte.gz',
+              file_path + 't10k-images-idx3-ubyte.gz',
+              file_path + 't10k-labels-idx1-ubyte.gz',
               ]
 
   # Extract it into np arrays.
-  train_data = extract_mnist_data(local_urls[0], num, 28, 1)
-  train_labels = extract_mnist_labels(local_urls[1], num)
-  test_data = extract_mnist_data(local_urls[2], num, 28, 1)
-  test_labels = extract_mnist_labels(local_urls[3], num)
+  train_data = extract_mnist_data(local_urls[0], 60000, 28, 1)
+  train_labels = extract_mnist_labels(local_urls[1], 60000)
+  test_data = extract_mnist_data(local_urls[2], 10000, 28, 1)
+  test_labels = extract_mnist_labels(local_urls[3], 10000)
 
   if test_only:
     return test_data, test_labels
