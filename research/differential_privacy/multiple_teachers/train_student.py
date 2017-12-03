@@ -25,6 +25,7 @@ import aggregation
 import deep_cnn
 import input
 import metrics
+import skimage
 from skimage import transform
 from skimage import color
 
@@ -132,7 +133,7 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   if (FLAGS.d_stu > -1):
     stdnt_data = []
     for i in range(FLAGS.stdnt_share):
-      new_img = transform.resize(test_data[i].astype(int),(28,28))
+      new_img = transform.resize(image.img_as_ubyte(test_data[i].astype(int)),(28,28))
 
       if FLAGS.d_stu == 3:
         new_img = color.rgb2gray(new_img) 
