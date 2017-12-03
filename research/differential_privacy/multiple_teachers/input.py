@@ -408,11 +408,11 @@ def ld_digit_test(test_name, num):
 
   # Extract it into np arrays.
 
-  test_data = extract_mnist_data(local_urls[2], num, 28, 1)
-  test_labels = extract_mnist_labels(local_urls[3], num)
+  test_data = extract_mnist_data(local_urls[0], num, 28, 1)
+  test_labels = extract_mnist_labels(local_urls[1], num)
 
 
-  return train_data, train_labels, test_data, test_labels
+  return test_data, test_labels
 
 
 def partition_dataset(data, labels, nb_teachers, teacher_id):

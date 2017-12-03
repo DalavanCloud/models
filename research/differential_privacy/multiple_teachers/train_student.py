@@ -85,7 +85,7 @@ def ensemble_preds(dataset, nb_teachers, stdnt_data):
     result[teacher_id] = deep_cnn.softmax_preds(stdnt_data, ckpt_path)
 
     # Save student training data
-    np.save('STU.' + FLAGS.test_name + '.npy', stdnt_data)
+    np.save(FLAGS.data_dir +'/STU/' + FLAGS.test_name + '.npy', stdnt_data)
 
     # This can take a while when there are a lot of teachers so output status
     print("Computed Teacher " + str(teacher_id) + " softmax predictions")
