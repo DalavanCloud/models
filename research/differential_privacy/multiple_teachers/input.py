@@ -392,7 +392,7 @@ def ld_mnist(test_only=False):
   else:
     return train_data, train_labels, test_data, test_labels
 
-def ld_digit(test_only=False, num):
+def ld_digit(test_only=False, num=2000):
   """
   Load the digit dataset from local files. currently only first 1000
   :param test_only: disables loading of both train and extra -> large speed up
