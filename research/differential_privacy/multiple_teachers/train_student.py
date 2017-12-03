@@ -142,10 +142,10 @@ def prepare_student_data(dataset, nb_teachers, save=False):
 #    stdnt_data = np.array(stdnt_data)
     trimmed = test_data[:FLAGS.stdnt_share, 2:30, 2:30, :]
     # grey scale
-    if (FLAGS.d_stu ==3):
-      stdnt_data = 0.2125*trimmed[:,:,0] +  0.7154*trimmed[:,:,1] + 0.0721*trimmed[:,:,2]
+    if (FLAGS.d_stu == 3):
+      stdnt_data = 0.2125*trimmed[:,:,:,0] +  0.7154*trimmed[:,:,:,1] + 0.0721*trimmed[:,:,:,2]
     else:
-      stdnt_data = trimmed[FLAGS.d_stu]
+      stdnt_data = trimmed[:,:,:,FLAGS.d_stu]
   else:
     stdnt_data = test_data[:FLAGS.stdnt_share]
   # Compute teacher predictions for student training data
