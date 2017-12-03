@@ -146,6 +146,7 @@ def prepare_student_data(dataset, nb_teachers, save=False):
       stdnt_data = 0.2125*trimmed[:,:,:,0] +  0.7154*trimmed[:,:,:,1] + 0.0721*trimmed[:,:,:,2]
     else:
       stdnt_data = trimmed[:,:,:,FLAGS.d_stu]
+    stdnt_data = stdnt_data.reshape((-1,28,28,1))
   else:
     stdnt_data = test_data[:FLAGS.stdnt_share]
   # Compute teacher predictions for student training data
