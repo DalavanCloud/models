@@ -141,7 +141,8 @@ def prepare_student_data(dataset, nb_teachers, save=False):
         new_img = new_img[ :,:, FLAGS.d_stu]
 
       stdnt_data.append(new_img.reshape(28,28,1).astype(np.float32))
-
+      
+    stdnt_data = np.array(stdnt_data)
     #stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
   else:
     stdnt_data = test_data[:FLAGS.stdnt_share]

@@ -12,9 +12,10 @@ data_names=('svhn' 'cifar10')
 
 for d in "${data_names[@]}"
 do
-	for i in `seq 0 3`
-	do
-	  test_name=$d'_'$i
-	  echo $test_name
+    for i in `seq 0 3`
+    do
+      test_name=$d'_'$i
+      echo $test_name
       sbatch -p  titanx-short --gres=gpu:2 --output=$test_name.out stu.sh $d $i $test_name 
+    done
 done
