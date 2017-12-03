@@ -133,14 +133,14 @@ def prepare_student_data(dataset, nb_teachers, save=False):
   if (FLAGS.d_stu > -1):
     stdnt_data = []
     for i in range(FLAGS.stdnt_share):
-      new_img = transform.resize(image.img_as_ubyte(test_data[i].astype(int)),(28,28))
+      new_img = transform.resize(skimage.img_as_ubyte(test_data[i].astype(int)),(28,28))
 
       if FLAGS.d_stu == 3:
         new_img = color.rgb2gray(new_img) 
       else:
-        new_img = new_img[ :,:, FLAGS.stu]
+        new_img = new_img[ :,:, FLAGS.d_stu]
 
-      stdnt_data.append(new_img.reshape(28,28,1))
+      stdnt_data.append(new_img.reshape(28,28,1).astype(np.float32))
 
     #stdnt_data = test_data[:FLAGS.stdnt_share, 2:30, 2:30, FLAGS.d_stu : FLAGS.d_stu+1]
   else:
