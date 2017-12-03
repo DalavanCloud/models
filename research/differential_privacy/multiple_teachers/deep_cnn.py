@@ -40,6 +40,9 @@ MOVING_AVERAGE_DECAY = 0.9999     # The decay to use for the moving average.
 LEARNING_RATE_DECAY_FACTOR = 0.1  # Learning rate decay factor.
 
 
+def mnist_format(dataset):
+  return dataset == 'mnist' or dataset =='digit'
+
 def _variable_on_cpu(name, shape, initializer):
   """Helper to create a Variable stored on CPU memory.
 
@@ -88,7 +91,7 @@ def inference(images, dropout=False):
   Returns:
     Logits
   """
-  if FLAGS.dataset == 'mnist':
+  if mnist_format(FLAGS.dataset):
     first_conv_shape = [5, 5, 1, 64]
   else:
     first_conv_shape = [5, 5, 3, 64]
@@ -201,7 +204,7 @@ def inference_deeper(images, dropout=False):
   Returns:
     Logits
   """
-  if FLAGS.dataset == 'mnist':
+  if mnist_format(FLAGS.dataset):
     first_conv_shape = [3, 3, 3, 96]
   else:
     first_conv_shape = [3, 3, 3, 96]
@@ -434,7 +437,7 @@ def _input_placeholder():
   This helper function declares a TF placeholder for the graph input data
   :return: TF placeholder for the graph input data
   """
-  if FLAGS.dataset == 'mnist':
+  if mnist_format(FLAGS.dataset):
     image_size = 28
     num_channels = 1
   else:
